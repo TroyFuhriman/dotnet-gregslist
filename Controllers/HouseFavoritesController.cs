@@ -10,22 +10,22 @@ namespace fullstack_gregslist.Controllers
   [ApiController]
   [Route("api/[controller]")]
   [Authorize]
-  public class CarFavoritesController : ControllerBase
+  public class HouseFavoritesController : ControllerBase
   {
-    private readonly CarFavoritesService _cfs;
+    private readonly HouseFavoritesService _hfs;
 
-    public CarFavoritesController(CarFavoritesService cfs)
+    public HouseFavoritesController(HouseFavoritesService hfs)
     {
-      _cfs = cfs;
+      _hfs = hfs;
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<ViewModelCarFavorite>> Get()
+    public ActionResult<IEnumerable<ViewModelHouseFavorite>> Get()
     {
       try
       {
         string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        return Ok(_cfs.Get(userId));
+        return Ok(_hfs.Get(userId));
       }
       catch (System.Exception err)
       {
@@ -34,12 +34,12 @@ namespace fullstack_gregslist.Controllers
     }
 
     [HttpPost]
-    public ActionResult<DTOCarFavorite> Create([FromBody] DTOCarFavorite fav)
+    public ActionResult<DTOHouseFavorite> Create([FromBody] DTOHouseFavorite fav)
     {
       try
       {
         fav.User = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        return Ok(_cfs.Create(fav));
+        return Ok(_hfs.Create(fav));
       }
       catch (System.Exception err)
       {
@@ -48,12 +48,12 @@ namespace fullstack_gregslist.Controllers
     }
 
     [HttpDelete("{Id}")]
-    public ActionResult<DTOCarFavorite> Delete(int Id)
+    public ActionResult<DTOHouseFavorite> Delete(int Id)
     {
       try
       {
         string user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        return Ok(_cfs.Delete(user, Id));
+        return Ok(_hfs.Delete(user, Id));
       }
       catch (System.Exception err)
       {

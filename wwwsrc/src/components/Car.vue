@@ -4,7 +4,6 @@
       class="border rounded shadow"
       @click="$router.push({name: 'carDetails', params: {carId: carData.id}})"
     >
-      hello
       <h1>{{carData.make}}</h1>
       <h2>{{carData.model}}</h2>
       <img :src="carData.imgUrl" class="img-fluid" />

@@ -10,17 +10,17 @@ namespace fullstack_gregslist.Controllers
   [ApiController]
   [Route("api/[controller]")]
   [Authorize]
-  public class CarFavoritesController : ControllerBase
+  public class JobFavoritesController : ControllerBase
   {
-    private readonly CarFavoritesService _cfs;
+    private readonly JobFavoritesService _cfs;
 
-    public CarFavoritesController(CarFavoritesService cfs)
+    public JobFavoritesController(JobFavoritesService cfs)
     {
       _cfs = cfs;
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<ViewModelCarFavorite>> Get()
+    public ActionResult<IEnumerable<ViewModelJobFavorite>> Get()
     {
       try
       {
@@ -34,7 +34,7 @@ namespace fullstack_gregslist.Controllers
     }
 
     [HttpPost]
-    public ActionResult<DTOCarFavorite> Create([FromBody] DTOCarFavorite fav)
+    public ActionResult<DTOJobFavorite> Create([FromBody] DTOJobFavorite fav)
     {
       try
       {
@@ -48,7 +48,7 @@ namespace fullstack_gregslist.Controllers
     }
 
     [HttpDelete("{Id}")]
-    public ActionResult<DTOCarFavorite> Delete(int Id)
+    public ActionResult<DTOJobFavorite> Delete(int Id)
     {
       try
       {
