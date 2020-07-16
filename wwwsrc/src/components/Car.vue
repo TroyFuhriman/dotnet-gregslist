@@ -4,6 +4,7 @@
       class="border rounded shadow"
       @click="$router.push({name: 'carDetails', params: {carId: carData.id}})"
     >
+      hello
       <h1>{{carData.make}}</h1>
       <h2>{{carData.model}}</h2>
       <img :src="carData.imgUrl" class="img-fluid" />
@@ -35,29 +36,31 @@ export default {
   data() {
     return {
       favId: ""
-    }
+    };
   },
   computed: {
     isFavorite() {
-      let car = this.$store.state.myFavoriteCars.find(c => c.id == this.carData.id)
+      let car = this.$store.state.myFavoriteCars.find(
+        c => c.id == this.carData.id
+      );
       if (car == null) {
         return false;
       }
-      this.favId = car.favoriteId
+      this.favId = car.favoriteId;
       return true;
     }
   },
   methods: {
     addToFav() {
       event.stopPropagation();
-      this.$store.dispatch("addFav", { carId: this.carData.id })
+      this.$store.dispatch("addFav", { carId: this.carData.id });
     },
     removeFav() {
       event.stopPropagation();
-      this.$store.dispatch("removeFav", this.favId)
+      this.$store.dispatch("removeFav", this.favId);
     }
   }
-}
+};
 </script>
 
 <style>
